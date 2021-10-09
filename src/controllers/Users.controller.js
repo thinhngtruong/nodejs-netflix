@@ -93,24 +93,10 @@ const deleteById = async (req, res, next) => {
   }
 };
 
-const updateRoleByUsername = async (req, res, next) => {
-  const { username } = req.params;
-  const { roles } = req.body;
-  if (roles)
-    try {
-      const user = await userService.findUserByUsername(username);
-      await userService.setRolesForUser(user, roles);
-      res.status(200).json({ message: 'Update role for user successfully' });
-    } catch (err) {
-      next(err);
-    }
-};
-
 module.exports = {
   create,
   findAll,
   findById,
   findByUsername,
   deleteById,
-  updateRoleByUsername
 };
